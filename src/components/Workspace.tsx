@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Bot, Cpu, BookOpen, FileText, Camera, Aperture, Image, Video, Mic, Music, Volume2, Palette, Film, Briefcase, Sparkles, Megaphone, Award, Download, Star } from 'lucide-react';
+import { BookOpen, FileText, Camera, Aperture, Image, Video, Mic, Music, Volume2, Palette, Film, Briefcase, Sparkles, Megaphone, Award, Download, Star } from 'lucide-react';
 import { MovieProject } from '../types';
-import { AgentsTab } from './tabs/AgentsTab';
-import { RPATab } from './tabs/RPATab';
 import { StoryTab } from './tabs/StoryTab';
 import { ScriptTab } from './tabs/ScriptTab';
 import { ShotListTab } from './tabs/ShotListTab';
@@ -28,8 +26,6 @@ interface WorkspaceProps {
 
 export const Workspace: React.FC<WorkspaceProps> = ({ project, onToggleFavorite }) => {
   const [activeTab, setActiveTab] = useState<
-    | 'agents'
-    | 'rpa'
     | 'story'
     | 'script'
     | 'shotlist'
@@ -46,11 +42,9 @@ export const Workspace: React.FC<WorkspaceProps> = ({ project, onToggleFavorite 
     | 'marketing'
     | 'commentary'
     | 'export'
-  >('agents');
+  >('story');
 
   const tabs = [
-    { id: 'agents', label: 'AI Agent Swarm', icon: Bot },
-    { id: 'rpa', label: 'RPA Automations', icon: Cpu },
     { id: 'story', label: 'Story & Plot', icon: BookOpen },
     { id: 'script', label: 'Screenplay', icon: FileText },
     { id: 'shotlist', label: 'Shot List', icon: Camera },
@@ -136,8 +130,6 @@ export const Workspace: React.FC<WorkspaceProps> = ({ project, onToggleFavorite 
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
           >
-            {activeTab === 'agents' && <AgentsTab project={project} />}
-            {activeTab === 'rpa' && <RPATab project={project} />}
             {activeTab === 'story' && <StoryTab project={project} />}
             {activeTab === 'script' && <ScriptTab project={project} />}
             {activeTab === 'shotlist' && <ShotListTab project={project} />}

@@ -361,8 +361,6 @@ export interface SystemNotification {
 }
 
 export type TabType =
-  | 'agents'
-  | 'rpa'
   | 'story'
   | 'script'
   | 'shotlist'
