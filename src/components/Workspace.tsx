@@ -77,7 +77,7 @@ export const Workspace: React.FC<WorkspaceProps> = ({ project, onToggleFavorite 
           <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
             {project.title}
           </h1>
-          <p className="text-xs text-slate-400">{project.genre} • Director: AI Studio • Generated: {new Date(project.createdAt).toLocaleDateString()}</p>
+          <p className="text-xs text-slate-400">{project.genre} • Director: AI Studio</p>
         </div>
 
         <div className="flex items-center gap-3">
