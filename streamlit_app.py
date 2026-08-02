@@ -312,7 +312,7 @@ with tab1:
         """, unsafe_allow_html=True)
         
     with col2:
-        st.markdown("<div class="cinema-card">", unsafe_allow_html=True)
+        st.markdown('<div class="cinema-card">', unsafe_allow_html=True)
         st.markdown("#### Key Themes")
         for t in proj.get("themes", []):
             st.markdown(f"- **{t}**")
