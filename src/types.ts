@@ -284,6 +284,82 @@ export interface ProjectVersionSnapshot {
   snapshotData: Partial<MovieProject>;
 }
 
+export type AgentStatusType = 'Thinking' | 'Working' | 'Waiting' | 'Completed';
+
+export interface AgentSwarmItem {
+  id: AgentRole;
+  name: string;
+  avatar: string;
+  status: AgentStatusType;
+  currentTask: string;
+  memorySize: string;
+  confidence: number;
+  executionTime: string;
+  progress: number;
+  color: string;
+  specialty: string;
+}
+
+export interface TaskQueueItem {
+  id: string;
+  taskName: string;
+  agentRole: AgentRole;
+  agentName: string;
+  priority: 'High' | 'Medium' | 'Low';
+  status: 'queued' | 'running' | 'completed' | 'failed';
+  startedAt: string;
+  finishedAt: string;
+  logs: string[];
+}
+
+export interface MultiAgentDebateState {
+  topic: string;
+  focusPriority: 'Creativity' | 'Accuracy' | 'Budget' | 'Story Quality';
+  arguments: { agent: string; point: string; role: AgentRole }[];
+  counterarguments: { agent: string; point: string; role: AgentRole }[];
+  consensus: string;
+  decision: string;
+}
+
+export interface WorkflowNodeItem {
+  id: string;
+  label: string;
+  agentRole?: AgentRole;
+  status: 'idle' | 'processing' | 'completed';
+  progress: number;
+  outputSnippet: string;
+  iconName: string;
+}
+
+export interface RPAAutomationItem {
+  id: string;
+  name: string;
+  status: 'Completed' | 'Running' | 'Idle' | 'Failed';
+  progress: number;
+  duration: string;
+  lastRun: string;
+  category: string;
+}
+
+export interface MemoryCategoryItem {
+  id: string;
+  category: 'scene' | 'character' | 'preferences' | 'project' | 'long_term';
+  key: string;
+  value: string;
+  relevanceScore: number;
+  vectorHash: string;
+  updatedAt: string;
+}
+
+export interface SystemNotification {
+  id: string;
+  title: string;
+  message: string;
+  timestamp: string;
+  read: boolean;
+  type: 'info' | 'success' | 'warning' | 'error';
+}
+
 export type TabType =
   | 'agents'
   | 'rpa'
@@ -303,4 +379,5 @@ export type TabType =
   | 'marketing'
   | 'commentary'
   | 'export';
+
 

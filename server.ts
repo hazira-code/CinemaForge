@@ -142,6 +142,121 @@ app.post("/api/rpa-execute", async (req, res) => {
   }
 });
 
+// GET /api/agents - Placeholder mock route
+app.get("/api/agents", (req, res) => {
+  res.json({
+    status: "ok",
+    agents: [
+      { id: "director", name: "Director Agent", status: "Working", currentTask: "Defining cinematic style & overall narrative arc", confidence: 0.98, memorySize: "2.4 MB", executionTime: "1.2s", progress: 85 },
+      { id: "screenwriter", name: "Screenwriter Agent", status: "Completed", currentTask: "Generated screenplay & dialogue polish", confidence: 0.95, memorySize: "4.1 MB", executionTime: "2.8s", progress: 100 },
+      { id: "storyboard", name: "Storyboard Agent", status: "Working", currentTask: "Synthesizing frame composition prompts", confidence: 0.92, memorySize: "3.2 MB", executionTime: "1.9s", progress: 70 },
+      { id: "cinematographer", name: "Cinematographer Agent", status: "Completed", currentTask: "Lens profiles & lighting key/fill setup", confidence: 0.97, memorySize: "1.8 MB", executionTime: "0.9s", progress: 100 },
+      { id: "voice", name: "Voice Director Agent", status: "Waiting", currentTask: "Awaiting locked dialogue lines", confidence: 0.90, memorySize: "1.1 MB", executionTime: "0.4s", progress: 30 },
+      { id: "music", name: "Music Director Agent", status: "Thinking", currentTask: "Evaluating orchestral theme tempos", confidence: 0.94, memorySize: "1.5 MB", executionTime: "0.8s", progress: 40 },
+      { id: "production", name: "Production Manager Agent", status: "Completed", currentTask: "Calculated call sheet matrix & budget", confidence: 0.99, memorySize: "2.9 MB", executionTime: "1.1s", progress: 100 },
+      { id: "qa", name: "QA Agent", status: "Working", currentTask: "Auditing continuity & checking plot logic", confidence: 0.98, memorySize: "3.7 MB", executionTime: "1.5s", progress: 90 },
+      { id: "rpa", name: "RPA Automation Bot", status: "Completed", currentTask: "Project folder & PDF bundle export complete", confidence: 1.0, memorySize: "5.0 MB", executionTime: "0.3s", progress: 100 }
+    ]
+  });
+});
+
+// GET /api/workflow - Placeholder mock route
+app.get("/api/workflow", (req, res) => {
+  res.json({
+    status: "ok",
+    workflow: [
+      { id: "node-1", label: "User Prompt", status: "completed", progress: 100, outputSnippet: "Parsed prompt: Deep space sci-fi thriller" },
+      { id: "node-2", label: "Director Agent", status: "completed", progress: 100, outputSnippet: "Defined 2.39:1 Anamorphic vision & tone" },
+      { id: "node-3", label: "Screenwriter Agent", status: "completed", progress: 100, outputSnippet: "Screenplay drafted: 3 scenes, 12 dialogue lines" },
+      { id: "node-4", label: "Storyboard Agent", status: "completed", progress: 100, outputSnippet: "Generated 6 Midjourney/Flux prompt frames" },
+      { id: "node-5", label: "Video Prompt Agent", status: "completed", progress: 100, outputSnippet: "Camera vector parameters optimized for Google Veo" },
+      { id: "node-6", label: "Voice Agent", status: "completed", progress: 100, outputSnippet: "Vocal direction: Low pitch, measured pause timing" },
+      { id: "node-7", label: "Music Agent", status: "completed", progress: 100, outputSnippet: "Synthesized 72 BPM dark ambient orchestral score" },
+      { id: "node-8", label: "Production Manager", status: "completed", progress: 100, outputSnippet: "Built 14-day shooting call sheet & $12.5M budget" },
+      { id: "node-9", label: "QA Agent", status: "completed", progress: 100, outputSnippet: "Continuity check passed (0 plot holes found)" },
+      { id: "node-10", label: "Export Package", status: "completed", progress: 100, outputSnippet: "ZIP, PDF, CSV, and JSON assets compiled" }
+    ]
+  });
+});
+
+// GET /api/tasks - Placeholder mock route
+app.get("/api/tasks", (req, res) => {
+  res.json({
+    status: "ok",
+    tasks: [
+      { id: "task-01", taskName: "Screenplay Generation", agentRole: "screenwriter", agentName: "Screenwriter Agent", priority: "High", status: "completed", startedAt: "10:00:05 AM", finishedAt: "10:00:12 AM", logs: ["Parsing logline", "Constructing Scene 1-3", "Formatting FDX export"] },
+      { id: "task-02", taskName: "Cinematography Mapping", agentRole: "cinematographer", agentName: "Cinematographer Agent", priority: "High", status: "completed", startedAt: "10:00:13 AM", finishedAt: "10:00:18 AM", logs: ["Selecting lens profile: 18mm Cooke Anamorphic", "Lighting plan: 5600K Cyan Key"] },
+      { id: "task-03", taskName: "Storyboard Image Synthesis", agentRole: "storyboard", agentName: "Storyboard Agent", priority: "Medium", status: "running", startedAt: "10:00:19 AM", finishedAt: "In Progress", logs: ["Rendering Frame 1", "Rendering Frame 2"] },
+      { id: "task-04", taskName: "RPA Asset Organization", agentRole: "qa", agentName: "RPA Bot", priority: "High", status: "completed", startedAt: "10:00:25 AM", finishedAt: "10:00:28 AM", logs: ["Created 6 studio folders", "PDF & CSV generated"] }
+    ]
+  });
+});
+
+// GET /api/debate - Placeholder mock route
+app.get("/api/debate", (req, res) => {
+  res.json({
+    status: "ok",
+    debate: {
+      topic: "Pacing vs Visual Spectacle in Scene 1",
+      focusPriority: "Story Quality",
+      arguments: [
+        { agent: "Director Agent", point: "We should hold on the monolith for 8 seconds before any dialogue begins to establish cosmic awe.", role: "director" },
+        { agent: "Screenwriter Agent", point: "Dr. Vance needs a line of dialogue earlier to ground the emotional stakes.", role: "screenwriter" }
+      ],
+      counterarguments: [
+        { agent: "Cinematographer Agent", point: "Visual atmosphere alone will communicate the stakes if we use extreme wide anamorphic framing.", role: "cinematographer" }
+      ],
+      consensus: "Hold silence for 6 seconds with heavy breathing audio, then deliver a 3-word whispered line.",
+      decision: "Approved by Lead Director & QA Agent. Scene 1 updated."
+    }
+  });
+});
+
+// GET /api/memory - Placeholder mock route
+app.get("/api/memory", (req, res) => {
+  res.json({
+    status: "ok",
+    memory: {
+      sceneMemory: [
+        { key: "Scene 1 Heading", value: "INT. COCKPIT - NIGHT", relevanceScore: 0.99 },
+        { key: "Scene 1 Lighting", value: "4000K HUD glow with emergency amber strobe", relevanceScore: 0.95 }
+      ],
+      characterMemory: [
+        { key: "Dr. Elena Vance", value: "Astrophysicist turned commander. Highly logical, silent trauma from 2038 mission.", relevanceScore: 0.98 }
+      ],
+      userPreferences: [
+        { key: "Aspect Ratio", value: "2.39:1 Ultrawide Anamorphic", relevanceScore: 0.96 },
+        { key: "Color Palette", value: "Cyan key, deep indigo shadows, warm amber practicals", relevanceScore: 0.94 }
+      ],
+      projectMemory: [
+        { key: "Logline", value: "When an astronaut discovers a silent alien monolith, her ship's AI begins responding in a dead language.", relevanceScore: 0.99 }
+      ],
+      longTermMemory: [
+        { key: "Studio Style Guide", value: "A-list sci-fi blockbuster quality with minimal exposition.", relevanceScore: 0.92 }
+      ]
+    }
+  });
+});
+
+// GET /api/rpa - Placeholder mock route
+app.get("/api/rpa", (req, res) => {
+  res.json({
+    status: "ok",
+    automations: [
+      { id: "rpa-01", name: "Create Project Folder", status: "Completed", progress: 100, duration: "0.4s", lastRun: "Just now", category: "File System" },
+      { id: "rpa-02", name: "Export PDF Screenplay", status: "Completed", progress: 100, duration: "1.2s", lastRun: "1 min ago", category: "Export" },
+      { id: "rpa-03", name: "Organize Assets", status: "Completed", progress: 100, duration: "0.8s", lastRun: "2 mins ago", category: "Assets" },
+      { id: "rpa-04", name: "Rename Scenes Consistently", status: "Completed", progress: 100, duration: "0.3s", lastRun: "3 mins ago", category: "Formatting" },
+      { id: "rpa-05", name: "Generate ZIP Package", status: "Completed", progress: 100, duration: "1.5s", lastRun: "5 mins ago", category: "Archiving" },
+      { id: "rpa-06", name: "Auto Save Project State", status: "Completed", progress: 100, duration: "0.2s", lastRun: "Continuous", category: "System" },
+      { id: "rpa-07", name: "Version History Snapshot", status: "Completed", progress: 100, duration: "0.5s", lastRun: "10 mins ago", category: "Version Control" },
+      { id: "rpa-08", name: "Generate Documentation", status: "Completed", progress: 100, duration: "0.9s", lastRun: "12 mins ago", category: "Docs" },
+      { id: "rpa-09", name: "Build Production Schedule", status: "Completed", progress: 100, duration: "1.1s", lastRun: "15 mins ago", category: "Scheduling" }
+    ]
+  });
+});
+
+
 // Prompt Enhancement Endpoint
 app.post("/api/enhance-prompt", async (req, res) => {
   try {
