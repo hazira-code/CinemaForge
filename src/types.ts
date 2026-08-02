@@ -218,7 +218,75 @@ export interface MovieProject {
   isFavorite?: boolean;
 }
 
+export type AgentRole =
+  | 'director'
+  | 'screenwriter'
+  | 'cinematographer'
+  | 'storyboard'
+  | 'character'
+  | 'music'
+  | 'voice'
+  | 'video'
+  | 'production'
+  | 'qa';
+
+export interface AgentProfile {
+  id: AgentRole;
+  name: string;
+  avatar: string;
+  iconName: string;
+  specialty: string;
+  description: string;
+  systemPrompt: string;
+  color: string;
+  memoryItemsCount: number;
+}
+
+export interface AgentMessage {
+  id: string;
+  agentRole: AgentRole;
+  agentName: string;
+  timestamp: string;
+  content: string;
+  thoughtProcess?: string;
+  confidenceScore: number;
+  messageType: 'proposal' | 'critique' | 'revision' | 'approval' | 'system';
+}
+
+export interface VectorMemoryEntry {
+  id: string;
+  type: 'long_term' | 'short_term' | 'character' | 'scene' | 'preference' | 'lore';
+  title: string;
+  snippet: string;
+  vectorId: string;
+  similarityScore: number;
+  tags: string[];
+  createdAt: string;
+}
+
+export interface RPATaskItem {
+  id: string;
+  title: string;
+  category: 'folder_structure' | 'file_export' | 'version_control' | 'schedule_matrix' | 'notifications' | 'qa_check' | 'backup';
+  status: 'idle' | 'running' | 'completed' | 'failed';
+  progress: number;
+  lastExecuted: string;
+  logs: string[];
+  outputSummary?: string;
+  autoRunEnabled: boolean;
+}
+
+export interface ProjectVersionSnapshot {
+  version: string;
+  timestamp: string;
+  author: string;
+  changelog: string;
+  snapshotData: Partial<MovieProject>;
+}
+
 export type TabType =
+  | 'agents'
+  | 'rpa'
   | 'story'
   | 'script'
   | 'shotlist'
@@ -235,3 +303,4 @@ export type TabType =
   | 'marketing'
   | 'commentary'
   | 'export';
+
