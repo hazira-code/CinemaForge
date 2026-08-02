@@ -282,11 +282,13 @@ export function downloadRenderConfig(project: MovieProject) {
     name: ${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-cinema
     runtime: node
     plan: free
-    buildCommand: npm install --include=dev && npm run build
+    buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
       - key: GEMINI_API_KEY
         sync: false
 `;
