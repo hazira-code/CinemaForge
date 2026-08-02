@@ -1,0 +1,6 @@
+{
+  "name": "Prompt Cinema AI",
+  "description": "AI-powered cinematic pre-production platform that transforms single text prompts into complete Hollywood-style filmmaking packages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
