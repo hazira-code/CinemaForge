@@ -1,7 +1,7 @@
 import React from 'react';
-import { Download, FileText, Code, FileSpreadsheet, Check, Share2, Package, Terminal } from 'lucide-react';
+import { Download, FileText, Code, FileSpreadsheet, Check, Share2, Package, Server } from 'lucide-react';
 import { MovieProject } from '../../types';
-import { downloadPDF, downloadMarkdown, downloadJSON, downloadStreamlitApp } from '../../utils/exporter';
+import { downloadPDF, downloadMarkdown, downloadJSON, downloadRenderConfig } from '../../utils/exporter';
 
 interface ExportTabProps {
   project: MovieProject;
@@ -18,12 +18,12 @@ export const ExportTab: React.FC<ExportTabProps> = ({ project }) => {
           </div>
           <div>
             <h2 className="text-xl font-bold text-white">Hollywood Export Hub</h2>
-            <p className="text-xs text-slate-400">Download Complete Pre-Production Packages in Industry Standard Formats & Streamlit Apps</p>
+            <p className="text-xs text-slate-400">Download Pre-Production Packages & Render Deployment Configs</p>
           </div>
         </div>
 
-        <span className="hidden sm:inline-block px-3 py-1 rounded-full text-xs font-mono bg-blue-500/20 text-blue-300 border border-blue-500/40">
-          STREAMLIT & REACT READY
+        <span className="hidden sm:inline-block px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+          RENDER & FULL-STACK READY
         </span>
       </div>
 
@@ -73,25 +73,25 @@ export const ExportTab: React.FC<ExportTabProps> = ({ project }) => {
           </button>
         </div>
 
-        {/* Streamlit Python Version */}
+        {/* Render Version Config */}
         <div className="glass-panel p-6 rounded-3xl border border-slate-800 hover:border-emerald-500/40 transition-all space-y-4 flex flex-col justify-between">
           <div className="space-y-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-              <Terminal className="w-5 h-5" />
+              <Server className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">Streamlit App Script (.py)</h3>
+              <h3 className="text-base font-bold text-white">Render Blueprint (`render.yaml`)</h3>
               <p className="text-xs text-slate-400 mt-1">
-                Standalone Python Streamlit application (`streamlit_app.py`) for running this film project locally or in Streamlit Cloud.
+                Configuration file for 1-click cloud deployment on Render.com (`buildCommand: npm install --include=dev && npm run build`).
               </p>
             </div>
           </div>
           <button
-            onClick={() => downloadStreamlitApp(project)}
+            onClick={() => downloadRenderConfig(project)}
             className="w-full py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-emerald-300 hover:text-white hover:bg-emerald-600/20 font-semibold text-xs flex items-center justify-center gap-2"
           >
             <Download className="w-4 h-4" />
-            <span>Download Streamlit Script</span>
+            <span>Download render.yaml</span>
           </button>
         </div>
 

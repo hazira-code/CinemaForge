@@ -276,41 +276,26 @@ export function downloadPDF(project: MovieProject) {
   triggerConfetti();
 }
 
-export function downloadStreamlitApp(project: MovieProject) {
-  const code = `# Streamlit Application for ${project.title}
-# Run with: streamlit run streamlit_app.py
-
-import streamlit as st
-import pandas as pd
-import json
-
-st.set_page_config(page_title="Prompt Cinema AI — ${project.title}", layout="wide")
-
-st.title("🎬 ${project.title}")
-st.caption("${project.genre} • ${project.tagline}")
-
-tab1, tab2, tab3 = st.tabs(["Story", "Screenplay", "Shot List"])
-
-with tab1:
-    st.subheader("Logline")
-    st.write("${project.logline}")
-    st.subheader("Synopsis")
-    st.write("""${project.synopsis}""")
-
-with tab2:
-    st.subheader("Screenplay")
-    st.text("""${project.screenplay.map(s => `SCENE ${s.sceneNumber}: ${s.heading}\\n${s.action}\\n`).join('\\n')}""")
-
-with tab3:
-    st.subheader("Shot List")
-    st.dataframe(pd.DataFrame(${JSON.stringify(project.shotList)}))
+export function downloadRenderConfig(project: MovieProject) {
+  const yamlContent = `services:
+  - type: web
+    name: ${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-cinema
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
 `;
 
-  const blob = new Blob([code], { type: 'text/x-python' });
+  const blob = new Blob([yamlContent], { type: 'text/yaml' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `${project.title.toLowerCase().replace(/[^a-z0-9]/g, '_')}_streamlit.py`;
+  a.download = `render.yaml`;
   document.body.appendChild(a);
   a.click();
   a.remove();
